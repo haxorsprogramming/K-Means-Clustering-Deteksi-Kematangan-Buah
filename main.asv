@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 23-Nov-2020 03:57:25
+% Last Modified by GUIDE v2.5 23-Nov-2020 03:44:03
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -280,52 +280,16 @@ cp5 = 'T = ';
 fincap5 = strcat(cp5, mts5);
 set(handles.ntr5,'String', fincap5);
 
-if fnx_5 > 125 
-    set(handles.txtHasil5,'String', 'Matang');
-    handles.hb5 = 1;
+if fnx_3 > 125 
+    set(handles.txtHasil3,'String', 'Matang');
+    handles.hb3 = 1;
 else
-    set(handles.txtHasil5,'String', 'Mentah');
-    handles.hb5 = 0;
+    set(handles.txtHasil3,'String', 'Mentah');
+    handles.hb3 = 0;
 end
 
-
-% keenam
-n6 = handles.nim6;
-m6 = max(n6(:));
-k6 = min(n6(:));
-fnx_6 = (m6 + k6) / 2;
-mts6 = int2str(fnx_6);
-cp6 = 'T = ';
-fincap6 = strcat(cp6, mts6);
-set(handles.ntr6,'String', fincap6);
-
-if fnx_6 > 125 
-    set(handles.txtHasil6,'String', 'Matang');
-    handles.hb6 = 1;
-else
-    set(handles.txtHasil6,'String', 'Mentah');
-    handles.hb6 = 0;
-end
 
 % final 
 hb1 = handles.hb1;
-hb2 = handles.hb2;
-hb3 = handles.hb3;
-hb4 = handles.hb4;
-hb5 = handles.hb5;
-hb6 = handles.hb6;
-
-hbfin = hb1 + hb2 + hb3 + hb4 + hb5 + hb6;
-
-if hbfin < 3
-    set(handles.txtHasilFinal,'String', 'Buah diprediksi mentah');
-    disp('mentah');
-elseif hbfin == 3
-    set(handles.txtHasilFinal,'String', 'Buah diprediksi mengkal');
-    disp('mengkal');
-else
-    set(handles.txtHasilFinal,'String', 'Buah diprediksi matang');
-    disp('matang');
-end
-
 % disp(hb1);
+

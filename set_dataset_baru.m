@@ -1,3 +1,4 @@
+clear;
 image_folder = 'dataset_4';
 filenames = dir(fullfile(image_folder, '*.jpg'));
 total_images = numel(filenames);

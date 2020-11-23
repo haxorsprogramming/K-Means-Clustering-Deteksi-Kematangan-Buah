@@ -86,12 +86,14 @@ img_input_1 = imread(fullfile(pathname,filename));
 % -> set gambar input original ke axes
 axes(handles.img_original_1);
 imshow(img_input_1);
+title('Citra jeruk original 1');
 % -> ubah gambar ke grayscale
 img_gray_1 = rgb2gray(img_input_1);
 % -> set gambar grayscale ke axes
 axes(handles.img_grayscale_1);
 imshow(img_gray_1);
-guidata(hObject, handles);
+title('Citra grayscale jeruk 1');
+
 % -> tentukan jumlah class
 numberOfClasses = 2;
 indexes = kmeans(img_gray_1(:), numberOfClasses);
@@ -100,7 +102,7 @@ classImage = reshape(indexes, size(img_gray_1));
 % h = subplot(2, 2, 3);
 axes(handles.img_seg_1);
 imshow(classImage, []);
-title('Classified Image');
+title('Citra biner jeruk 1');
 % colormap(h,parula);
 class = zeros(size(img_gray_1));
 area = zeros(numberOfClasses, 1);
@@ -112,17 +114,24 @@ end
  
 [~,min_area] = min(area);
  
-object = classImage == min_area;
-bw = medfilt2(object,[10 10]);
-bw = bwareaopen(bw,5000);
+object = classImage==min_area;
+bw = medfilt2(object,[5 5]);
+bw = bwareaopen(bw, 5000);
 s = regionprops(bw,'BoundingBox');
 bbox = cat(1, s.BoundingBox);
 RGB = insertShape(img_input_1, 'FilledRectangle', bbox, 'Color', 'yellow', 'Opacity', 0.3);
-RGB = insertObjectAnnotation(RGB,'rectangle',bbox,'Object','TextBoxOpacity',0.9,'FontSize',18);
+RGB = insertObjectAnnotation(RGB, 'rectangle', bbox, 'Object','TextBoxOpacity', 0.9, 'FontSize',18);
 axes(handles.img_dec_1);
-imshow(RGB, []);
+imshow(RGB);
 title('Segmentasi jeruk 1');
 
+% clusterisasi 
+img_clus_1 = imresize(img_gray_1, [4 4]);
+axes(handles.citra_clus_1);
+imshow(img_clus_1);
+title('Citra clustering jeruk 1');
+
+guidata(hObject, handles);
 
 % --- Executes during object creation, after setting all properties.
 function figure1_CreateFcn(hObject, eventdata, handles)

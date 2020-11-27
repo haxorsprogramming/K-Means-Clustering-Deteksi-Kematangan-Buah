@@ -22,7 +22,7 @@ function varargout = main_2(varargin)
 
 % Edit the above text to modify the response to help main_2
 
-% Last Modified by GUIDE v2.5 25-Nov-2020 03:08:18
+% Last Modified by GUIDE v2.5 25-Nov-2020 06:34:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -89,6 +89,7 @@ imshow(img_input_1);
 title('Citra original');
 % -> ubah gambar ke grayscale
 img_gray_1 = rgb2gray(img_input_1);
+saveas(gcf, 'citra_uji1.png');
 % -> set gambar grayscale ke axes
 axes(handles.img_grayscale_1);
 imshow(img_gray_1);
@@ -571,6 +572,7 @@ imshow(img_input_6);
 title('Citra original');
 % -> ubah gambar ke grayscale
 img_gray_6 = rgb2gray(img_input_6);
+handles.citra_s_g_1 = img_gray_6;
 % -> set gambar grayscale ke axes
 axes(handles.img_grayscale_6);
 imshow(img_gray_6);
@@ -614,3 +616,27 @@ imshow(img_clus_6);
 title('Citra clustering');
 handles.np6 = img_clus_6;
 guidata(hObject, handles);
+
+
+% --- Executes on button press in btn_keluar.
+function btn_keluar_Callback(hObject, eventdata, handles)
+% hObject    handle to btn_keluar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close all force;
+
+
+% --- Executes on button press in btn_save.
+function btn_save_Callback(hObject, eventdata, handles)
+% hObject    handle to btn_save (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+saveas(gcf,'hasil_pengujian.png');
+
+
+% --------------------------------------------------------------------
+function Untitled_3_Callback(hObject, eventdata, handles)
+% hObject    handle to Untitled_3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+f = msgbox('Perhitungan K-Means clustering selesai ...');
